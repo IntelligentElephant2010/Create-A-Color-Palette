@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .btnStyle {
+          background-color: rgb(255, 255, 255);
+          border: none;
+          color: rgb(0, 0, 0);
+          padding: 12px 30px;
+          cursor: pointer;
+          font-size: 20px;
+          font-family: 'Roboto', sans-serif;
+          text-decoration: none;
+        }
+
+        /* Darker background on mouse-over */
+        .btnStyle:hover {
+          background-color:rgb(243, 243, 243);
+        }
+        #color1, #color2, #color3, th {
+            color: rgb(0, 0, 0);
+            font-family: 'Roboto', sans-serif;
+            padding: 12px 30px;
+        }
+        .img {
+            width: 16px;
+            height: 16px;
+        }
+        .copyBtn {
+            border:none;
+            color: black;
+            padding: 12px 30px;
+            cursor: pointer;
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            text-decoration: none;
+        }
+        h1{
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Color Palette Generator</i></h1>
+    <p>Color Palette Generator by IntelligentElephant2010. All icons from Font Awesome 4.7.0. Font Awesome by Dave Gandy - <a href="http://fontawesome.io">"Font Awesome by Dave Gandy - http://fontawesome.io</a></p>
+    <button onClick="window.location.reload();" class="btnStyle"><i class="fa fa-refresh"></i> Refresh Page</button>
+   
+    <script>
+        function getRandomInteger(number) {
+        return Math.floor(Math.random() * Math.floor(number));
+        }
+        colorchars=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
+        var cols=[];
+        for (var k = 0; k < 3; k++) {
+        col="#"
+        for (var i = 0; i < 6; i++) {
+        col+=colorchars[getRandomInteger(colorchars.length)];
+        }
+        cols.push(col);
+        }
+        console.log(cols);
+    </script>
+    <br><br>
+    <table id="myTable">
+        <tr>
+            <th id="color1">If you're seeing this, an error occured.</th>
+            <th id="color2">If you're seeing this, an error occured.</th>
+            <th id="color3">If you're seeing this, an error occured.</th>
+        </tr>
+        <tr>
+            <!--Copy Solid made by Fonticons Inc under Font Awesome Pro License - link to license: https://fontawesome.com/license -->
+            <th id="copy1"><button class="copyBtn" id="copyBtn1" onClick="copyCode(cols[0])"><i class="fa fa-clipboard"></i> Copy</button></th>
+            <th id="copy2"><button class="copyBtn" id="copyBtn2" onClick="copyCode(cols[1])"><i class="fa fa-clipboard"></i> Copy</button></th>
+            <th id="copy3"><button class="copyBtn" id="copyBtn3" onClick="copyCode(cols[2])"><i class="fa fa-clipboard"></i> Copy</button></th>
+        </tr>
+    </table>
+    <br><br>
+    <script>
+        document.getElementById("color1").innerHTML = cols[0];
+        document.getElementById("color1").style.backgroundColor = cols[0];
+        document.getElementById("color2").innerHTML = cols[1];
+        document.getElementById("color2").style.backgroundColor = cols[1];
+        document.getElementById("color3").innerHTML = cols[2];
+        document.getElementById("color3").style.backgroundColor = cols[2];
+
+        document.getElementById("copy1").style.backgroundColor = cols[0];
+        document.getElementById("copy2").style.backgroundColor = cols[1];
+        document.getElementById("copy3").style.backgroundColor = cols[2];
+
+        document.getElementById("copyBtn1").style.backgroundColor = cols[0];
+        document.getElementById("copyBtn2").style.backgroundColor = cols[1];
+        document.getElementById("copyBtn3").style.backgroundColor = cols[2];
+
+        function copyCode (num) {
+            var dummy = document.createElement("input");
+            document.body.appendChild(dummy);
+            dummy.value = num;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            alert("Copied Hex: " + num);
+        }
+    </script>
+</body>
+</html>
