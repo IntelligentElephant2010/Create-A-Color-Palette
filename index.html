@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Palette Generator</title>
-    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <style>
@@ -46,37 +45,53 @@
             text-align: center;
             font-family: 'Roboto', sans-serif;
         }
+        .txt-center {
+            text-align: center;
+        }
+        .hide {
+          display: none;
+        }
+
+        .clear {
+          float: none;
+          clear: both;
+        }
+
         .rating {
-            float:left;
-            width:300px;
+            width: 90px;
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            text-align: center;
+            position: relative;
         }
-        .rating span { float:right; position:relative; }
-        .rating span input {
-            position:absolute;
-            top:0px;
-            left:0px;
-            opacity:0;
+
+        .rating > label {
+            float: right;
+            display: inline;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            width: 1.1em;
+            cursor: pointer;
+            color: #000;
         }
-        .rating span label {
-            display:inline-block;
-            width:30px;
-            height:30px;
-            text-align:center;
-            color:#FFF;
-            background:#ccc;
-            font-size:30px;
-            margin-right:2px;
-            line-height:30px;
-            border-radius:50%;
-            -webkit-border-radius:50%;
+
+        .rating > label:hover,
+        .rating > label:hover ~ label,
+        .rating > input.radio-btn:checked ~ label {
+            color: transparent;
         }
-        .rating span:hover ~ span label,
-        .rating span:hover label,
-        .rating span.checked label,
-        .rating span.checked ~ span label {
-            background:#F90;
-            color:#FFF;
+
+        .rating > label:hover:before,
+        .rating > label:hover ~ label:before,
+        .rating > input.radio-btn:checked ~ label:before,
+        .rating > input.radio-btn:checked ~ label:before {
+            content: "\2605";
+            position: absolute;
+            left: 0;
+            color: #FFD700;
         }
+
     </style>
     <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
 </head>
@@ -115,30 +130,25 @@
         </tr>
     </table>
     <br><br>
-    <script>
-        $(document).ready(function(){
-        //  Check Radio-box
-            $(".rating input:radio").attr("checked", false);
-            $('.rating input').click(function () {
-                $(".rating span").removeClass('checked');
-                $(this).parent().addClass('checked');
-            });
-
-            $('input:radio').change(
-            function(){
-                var userRating = this.value;
-            }); 
-        });
-    </script>
     <form action="https://send.pageclip.co/3rSpHGcCS0s4jIH0g51259WJxET5pN2v" class="pageclip-form" method="post">
       <!-- Replace these inputs with your own. Make sure they have a "name" attribute! -->
-     <div class="rating">
-        <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
-        <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
-        <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
-        <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
-        <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
-    </div>
+<div class="txt-center">
+  <form>
+        <div class="rating">
+            <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+            <label for="star5" >☆</label>
+            <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+            <label for="star4" >☆</label>
+            <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+            <label for="star3" >☆</label>
+            <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+            <label for="star2" >☆</label>
+            <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+            <label for="star1" >☆</label>
+            <div class="clear"></div>
+        </div>
+    </form>
+</div>
 
       <!-- This button will have a loading spinner. Keep the inner span for best results. -->
       <button type="submit" class="pageclip-form__submit">
